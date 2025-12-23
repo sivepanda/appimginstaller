@@ -428,8 +428,8 @@ func (m *model) install() tea.Cmd {
 	}
 
 	// Permission denied, rerun with sudo
-	return installCompleteMsg{
-		err: fmt.Errorf("Installation requires administrator privileges. \n\n Rerun with sudo or pkexec.")
+	return func() tea.Msg {
+		return installCompleteMsg{err: fmt.Errorf("Installation requires administrator privileges. \n\n Rerun with sudo or pkexec.", err)}
 	}
 }
 
